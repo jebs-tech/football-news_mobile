@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+// Import drawer widget
 import 'package:football_news_mobile/widgets/left_drawer.dart';
-import 'package:football_news_mobile/screens/newslist_form.dart';  // Add this import
-// ...existing code...
-
+import 'package:football_news_mobile/widgets/news_card.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+    MyHomePage({super.key}); //sudah ada pada code sebelumnya
 
-  final String nama = "Jenisa Bunga"; //nama
-  final String npm = "2406431334"; //npm
-  final String kelas = "F"; //kelas
+    final String nama = "Jenisa Bunga"; //nama
+    final String npm = "2406431334"; //npm
+    final String kelas = "F"; //kelas
 
-   final List<ItemHomepage> items = [
-    ItemHomepage("See Football News", Icons.newspaper),
-    ItemHomepage("Add News", Icons.add),
-    ItemHomepage("Logout", Icons.logout),
-  ];
+    final List<ItemHomepage> items = [
+      ItemHomepage("See Football News", Icons.newspaper),
+      ItemHomepage("Add News", Icons.add),
+      ItemHomepage("Logout", Icons.logout),
+    ];
 
-@override
+    @override
     Widget build(BuildContext context) {
     // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
         // Judul aplikasi "Football News" dengan teks putih dan tebal.
+
         title: const Text(
           'Football News',
           style: TextStyle(
@@ -98,8 +98,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-
-
 class InfoCard extends StatelessWidget {
   // Kartu informasi yang menampilkan title dan content.
 
@@ -138,67 +136,4 @@ class ItemHomepage {
  final IconData icon;
 
  ItemHomepage(this.name, this.icon);
-}
-
-class ItemCard extends StatelessWidget {
-  // Menampilkan kartu dengan ikon dan nama.
-
-  final ItemHomepage item; 
-
-  const ItemCard(this.item, {super.key}); 
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      // Menentukan warna latar belakang dari tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
-      // Membuat sudut kartu melengkung.
-      borderRadius: BorderRadius.circular(12),
-
-      child: InkWell(
-        // Aksi ketika kartu ditekan.
-        onTap: () {
-          // Menampilkan pesan SnackBar saat kartu ditekan.
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
-                // Navigate ke route yang sesuai (tergantung jenis tombol)
-    if (item.name == "Add News") {
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const NewsFormPage(),
-        ),
-    );
-    }
-        },
-        // Container untuk menyimpan Icon dan Text
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              // Menyusun ikon dan teks di tengah kartu.
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
 }
